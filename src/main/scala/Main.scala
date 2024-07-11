@@ -6,9 +6,10 @@ import org.apache.spark.sql.SparkSession
   val spark = SparkSession
     .builder()
     .appName("Spark SQL Learner")
+    .master(sys.env.getOrElse("SPARK_MASTER_URL", "local[*]"))
     .getOrCreate()
 
-  val path = "/src/population_2024.csv"
+  val path = ".\\src\\population_2024.csv"
 
   val df = spark.read.csv(path)
 
